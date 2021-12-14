@@ -7,22 +7,24 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-
+    // This controls mouse sensitivity. 
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
 
     float xRotation = 0f;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update.
     void Start()
     {
+        // Hide and lock the cursor to the centre of the screen.
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Multiply by Time.deltaTime to ensure that we rotate independent of our current frame rate.
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 

@@ -1,6 +1,3 @@
-// Credit: Ketra Games on YouTube
-// Tutorial: https://www.youtube.com/watch?v=7fdSYc8WElo
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

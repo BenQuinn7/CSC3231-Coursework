@@ -1,3 +1,6 @@
+// Credit: Lurony on YouTube
+// Tutorial Used: https://www.youtube.com/watch?v=TJCOC0gcU4k
+
 using UnityEngine;
 
 public class Waypoints : MonoBehaviour
@@ -22,7 +25,7 @@ public class Waypoints : MonoBehaviour
                 current = 0;
             }
         }
-
+        // Allows the object to move from waypoint to waypoint.
         transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * speed);
 
     }
