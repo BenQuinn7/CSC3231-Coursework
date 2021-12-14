@@ -18,6 +18,7 @@ public class MemoryDisplay : MonoBehaviour
     {
         var sb = new StringBuilder(500);
         if (systemUsedMemoryRecorder.Valid)
+            // Divide by (1024 * 1024) to get the value in MB. 
             sb.AppendLine($"System Used Memory: {systemUsedMemoryRecorder.LastValue / (1024 * 1024)} MB");
         memoryUsage.text = sb.ToString();
     }

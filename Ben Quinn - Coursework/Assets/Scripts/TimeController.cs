@@ -7,13 +7,17 @@ using TMPro;
 
 public class TimeController : MonoBehaviour
 {
-
+    // All [SerializeField] fields can be set in the inspector.
+ 
+    // This controls how fast time passes in game. 
     [SerializeField]
     private float timeMultiplier;
 
+    // Controls what time the game starts.
     [SerializeField]
     private float startHour;
 
+    // Displays the current game time.
     [SerializeField]
     private TextMeshProUGUI timeText;
 
@@ -53,6 +57,7 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Takes the current date and time then sets the time to our startHour float.
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
 
         sunriseTime = TimeSpan.FromHours(sunriseHour);
@@ -67,10 +72,12 @@ public class TimeController : MonoBehaviour
         UpdateLightSettings();
     }
 
+    // Controls sun rotation.
     private void RotateSun()
     {
         float sunLightRotation;
 
+        // Check that we are in day time.
         if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
         {
             TimeSpan sunriseToSunsetDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
@@ -93,6 +100,7 @@ public class TimeController : MonoBehaviour
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
 
+    // Updates light settings.
     private void UpdateLightSettings()
     {
         float dotProduct = Vector3.Dot(sunLight.transform.forward, Vector3.down);
@@ -101,6 +109,7 @@ public class TimeController : MonoBehaviour
         RenderSettings.ambientLight = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
     }
 
+    // Updates time of day.
     private void UpdateTimeOfDay()
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
@@ -111,6 +120,7 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    // This method will help work out the rotation of the sun, based on the time of day.
     private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
     {
         TimeSpan difference = toTime - fromTime;
